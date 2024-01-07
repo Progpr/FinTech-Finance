@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 style="color:white;">Sell from your current holdings</h1>
+    <br><br>
+    <form action="/sell" method="post">
+        <div class="mb-3">
+            <select name="symbol" autofocus class="form-control mx-auto w-auto">
+                <option selected disabled>Select stock to sell</option>
+                {% for row in stocks_db %}
+                    <option name="stock" value="{{row.stock}}">{{row.stock}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+        <div class="mb-3">
+            <input name = "shares"  class="form-control w-auto mx-auto" autofocus autocomplete="off" type="number" placeholder="Enter the number of shares">
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+    <br>
+    <img src="/static/sell.png" alt="Buy Pic" height="200" width="200">
+{% endblock %}

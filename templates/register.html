@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div ng-app="formValidationApp" ng-controller="FormValidationController">
+        <form name="myForm" ng-submit="submitForm()"  action="/register" method="post" novalidate>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text" ng-model="user.username" required>
+                <span ng-show="myForm.username.$dirty && myForm.username.$error.required">Username is required.</span>
+            </div>
+            <div class="input-group mb-3" style="padding-right:500px; padding-left:500px;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">+91</span>
+                </div>
+                <input type="text" class="form-control mx-auto w-auto" placeholder="Enter 10 digit phone number" aria-label="number" aria-describedby="basic-addon1" ng-model="user.phone" required>
+                <span class="error" ng-show="myForm.phone.$dirty && myForm.phone.$error.required">Phone number is required.</span>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email" name="email" placeholder="Email" type="text" ng-model="user.email" required>
+                <span class="error" ng-show="myForm.email.$dirty && myForm.email.$error.required">Email is required.</span>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password" ng-model="user.password" required>
+                <span class="error" ng-show="myForm.password.$dirty && myForm.password.$error.required">Password is required.</span>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Re-type Password" type="password" ng-model="user.confirmation" required ng-pattern="user.password">
+                <span class="error" ng-show="myForm.confirmation.$dirty && myForm.confirmation.$error.required">Confirmation is required.</span>
+            </div>
+            <div class="btn-group-horizontal" role="group" aria-label="Horizontal radio toggle button group">
+                <input type="radio" class="btn-check" name="gender" id="male" ng-model="user.gender" value="Male">
+                <label class="btn btn-outline-dark" for="male">Male</label>
+                <input type="radio" class="btn-check" name="gender" id="female" ng-model="user.gender" value="Female">
+                <label class="btn btn-outline-dark" for="female">Female</label>
+            </div><br>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="pan" name="pan" placeholder="Pan Number" type="text" ng-model="user.pan" required>
+                <span class="error" ng-show="myForm.pan.$dirty && myForm.pan.$error.required">Pan Number is required.</span>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="aadhar" name="aadhar" placeholder="Aadhar Number" type="text" ng-model="user.aadhar" required>
+                <span  class="error" ng-show="myForm.aadhar.$dirty && myForm.aadhar.$error.required">Aadhar Number is required.</span>
+            </div>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="bank" name="bank" placeholder="Bank Account Number" type="text" ng-model="user.bank" required>
+                <span class="error" ng-show="myForm.bank.$dirty && myForm.bank.$error.required">Bank Account Number is required.</span>
+            </div>
+            <div class="mb-3">
+                <label for="income">Annual Household Income</label>
+                <select class="form-control mx-auto w-auto" name="income" ng-model="user.income" required>
+                    <option value="" disabled selected>-Select Income-</option>
+                    {% for val in INCOME %}
+                    <option value="{{val}}">{{val}}</option>
+                    {% endfor %}
+                </select>
+                <span class="error" ng-show="myForm.income.$dirty && myForm.income.$error.required">Please select an income level.</span>
+            </div><br>
+            <p id="message"></p>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+        <script>
+            angular.module('formValidationApp', [])
+                .controller('FormValidationController', function ($scope, $http) {
+                    $scope.user = {};
+
+                    $scope.submitForm = function () {
+                        if ($scope.myForm.$valid) {
+                            $http.post('/register', $scope.user)
+                                .then(function (response) {
+
+                                    window.location.href = '/login';
+                                })
+                                .catch(function (error) {
+                                    //catching error
+                                });
+                        }
+                    };
+                });
+        </script>
+    </div>
+{% endblock %}
