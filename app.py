@@ -5,6 +5,7 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
+from openai import OpenAI
 
 from helpers import apology, login_required, lookup, usd
 
@@ -314,7 +315,17 @@ def sell():
 
 
 @app.route("/fundamentals")
+
 def fundamentals():
-    return render_template("dashboard.py")
+    return render_template("..")
 
 
+
+@app.route("/bot")
+def bot():
+    return render_template("bot.html")
+
+
+@app.route("/watchlist")
+def watchlist():
+    return render_template("watchlist.html")

@@ -5,6 +5,7 @@ import requests
 import subprocess
 import urllib
 import uuid
+from openai import OpenAI
 
 from flask import redirect, render_template, session
 from functools import wraps
