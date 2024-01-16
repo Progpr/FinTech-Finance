@@ -170,3 +170,61 @@ label {
 {
     padding-left: 70px;
 }
+
+
+/* Dexterbot CSS */
+
+.container {
+    width:600px;
+    height:400px;
+    background-color: #141414;
+    display:grid;
+    align-items: center;
+    border: solid white 5px;
+    border-radius:6%;
+}
+
+.welcome > div {
+    place-content: center;
+}
+
+.text {
+    margin-top: 10px;
+}
+.font {
+    color:rgb(94, 94, 206);
+    font-weight:800;
+    font-size:20px;
+}
+
+.dexterbot {
+    height:50px;
+    width:65px;
+    color:white;
+}
+
+.input-window {
+    margin-top: 0%;
+}
+
+.title {
+    font-weight: 800;
+    color: white;
+}
+
+.buttons > div {
+    display:inline-block;
+    vertical-align: middle;
+}
+
+/* .botbutton {
+    outline: solid black 5px;
+    width:100px;
+    height: 100px;
+} */
+
+.response {
+    font-size: 16px;
+    margin:5px;
+    color:white;
+}

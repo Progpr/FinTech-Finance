@@ -12,7 +12,7 @@ company_name = st.sidebar.text_input("Company Name", "")
 
 if company_name:
     # Request to the IEX Cloud search endpoint to find the stock symbol
-    search_url = f"https://api.iex.cloud/v1/search/{company_name}?token={config.IEX_API_KEY}"
+    search_url = f"https://api.iex.cloud/v1/search/{company_name}?token={config.IEX_P_KEY}"
     search_response = requests.get(search_url)
     search_results = search_response.json()
 

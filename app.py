@@ -6,7 +6,8 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from openai import OpenAI
-
+from datetime import datetime
+import requests
 from helpers import apology, login_required, lookup, usd
 
 # Configure application
@@ -314,15 +315,31 @@ def sell():
         return redirect("/")
 
 
+
 @app.route("/fundamentals")
-
 def fundamentals():
-    return render_template("..")
+    return render_template("fundamentals.html")
+
+
+@app.route("/ask")
+def ask():
+    return render_template("ask.html")
+
+@app.route("/response", methods=["GET","POST"])
+def respose():
+    if request.method == ""
 
 
 
-@app.route("/bot")
+    ##openAI logic
+
+
+
+     return render_template("response.html")
+
+@app.route("/bot", methods=[""])
 def bot():
+
     return render_template("bot.html")
 
 
