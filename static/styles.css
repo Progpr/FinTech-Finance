@@ -36,11 +36,137 @@ span {
     color:black;
 }
 main {
-    background-color:#ed3419;
+    background-color:#b44949;
 }
 
 p {
     color:white;
     font-style:bold;
     font-size:24dp;
+}
+
+/* Watchlist Page CSS */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+}
+
+ 
+.form1 {
+    margin:20px;
+    outline: solid 2px white;
+    position: relative;
+    width: 30rem;
+    background: var(--color-brand);
+    border-radius: var(--rad);
+}
+input, button {
+  height: var(--height);
+  font-family: var(--font-fam);
+  border: 0;
+  color: var(--color-dark);
+  font-size: 1.8rem;
+}
+input[type="search"] {
+  outline: 0; /*shold probably remove this for better accessibility, adding for demo aesthetics for now. */
+  width: 100%;
+  background: var(--color-light);
+  padding: 0 1.6rem;
+  border-radius: var(--rad);
+  appearance: none; /*for iOS input[type="search"] roundedness issue. border-radius alone doesn't work */
+  transition: all var(--dur) var(--bez);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+}
+#serbt {
+  /* display: none;  */
+  /* // prevent being able to tab to it */
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--btn-width);
+  font-weight: bold;
+  background: var(--color-brand);
+  border-radius: 0 var(--rad) var(--rad) 0;
+}
+input:not(:placeholder-shown) {
+  border-radius: var(--rad) 0 0 var(--rad);
+  width: calc(100% - var(--btn-width));
+  + button {
+    display: block;
+  }
+}
+label {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+
+
+.multiple
+{
+    position: absolute;
+    margin-left: 45%;
+    margin-top: 20%;
+}
+
+.page
+{
+    display: flex;
+    justify-content: center;
+}
+
+.top
+{
+    display: flex;
+    background-color: rgb(119, 119, 216);
+}
+
+.search
+{
+    display: flex;
+    justify-content: center;
+}
+
+.group
+{
+    width: 1200px;
+    margin-top: 80px;
+    border-radius: 15px;
+}
+
+.heading
+{
+    display:flex;
+    padding: 20px;
+}
+
+.stock
+{
+    padding-left: 20px;
+}
+
+.last
+{
+    padding-left: 500px;
+}
+
+.change
+{
+    padding-left: 70px;
+}
+
+.perchange
+{
+    padding-left: 70px;
 }

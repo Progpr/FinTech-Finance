@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watchlist</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <div class="switch">
+        <div class="page">
+            <div class="group">
+                <div class="top">
+                    <img style="padding: 20px;" src="assets/watchlist-icon-popup.svg">
+                    <h1 style="padding-top: 30px">Watchlist</h1>
+                </div>
+                <div class="search">
+                    <!-- <div><input style="width: 450px;" type="text" placeholder="Search.."></div> -->
+                    <form onsubmit="event.preventDefault();" role="search">
+                        <label for="search">Search for stuff</label>
+                        <input id="search" type="search" placeholder="Search..." autofocus required />
+                        <button id="serbt" type="submit">Go</button>    
+                      </form>
+                </div>
+                <div class="heading">
+                    <div class="stock"><h4>Stock</h4></div>
+                    <div class="last"><h4>Last</h4></div>
+                    <div class="change"><h4>Change</h4></div>
+                    <div class="perchange"><h4>%Change</h4></div>
+                </div>
+                <div class="watching">
+                    <ul>
+                        <li>Stock 1</li>
+                        <li>Stock 2</li>
+                        <li>Stock 3</li>
+                        <li>Stock 4</li>
+                        <li>Stock 5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="multiple">
+            <button style="background: var(--color-brand); padding: 4px;">1</button>
+            <button style="background: var(--color-brand); padding: 4px;">2</button>
+            <button style="background: var(--color-brand); padding: 4px;">3</button>
+            <button style="background: var(--color-brand); padding: 4px;">4</button>
+            <button style="background: var(--color-brand); padding: 4px;">5</button>
+            <button style="background: var(--color-brand); padding: 4px;">6</button>
+            <button style="background: var(--color-brand); padding: 4px;">7</button>
+        </div>
+    </div>    
+</body>
+</html>
