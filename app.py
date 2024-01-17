@@ -163,24 +163,24 @@ def forget():
     else:
         input_username = request.form.get("username")
         new_password = request.form.get("new_password")
-        old_password = request.form.get("old_password")
+        #old_password = request.form.get("old_password")
 
         users = db.execute("select * from users where username = ?",input_username)
 
-        if len(users) != 1 or not check_password_hash(users[0]["hash"], old_password):
+        if len(users) != 1:
             return apology("invalid username and/or old password", 403)
 
         if not input_username:
             return apology("Enter you username!",403)
 
-        if not old_password:
-            return apology("Retype your old password!",403)
+        #if not old_password:
+            #return apology("Retype your old password!",403)
 
         if not new_password:
             return apology("Make a new password!",403)
 
-        if old_password == new_password:
-            return apology("The new password cannot be the same as the old password",403)
+        #if old_password == new_password:
+            #return apology("The new password cannot be the same as the old password",403)
 
         hash_password = generate_password_hash(new_password)
         db.execute("update users set hash = ? where username = ?",hash_password,input_username)
@@ -327,19 +327,18 @@ def ask():
 
 @app.route("/response", methods=["GET","POST"])
 def respose():
-    if request.method == ""
+    # if request.method == ""
 
 
 
-    ##openAI logic
+    ##openAI logic  
 
 
 
-     return render_template("response.html")
+    return render_template("response.html")
 
-@app.route("/bot", methods=[""])
+@app.route("/bot")
 def bot():
-
     return render_template("bot.html")
 
 

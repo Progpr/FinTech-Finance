@@ -201,6 +201,7 @@ label {
     height:50px;
     width:65px;
     color:white;
+    position: relative;
 }
 
 .input-window {
@@ -210,6 +211,7 @@ label {
 .title {
     font-weight: 800;
     color: white;
+    position:relative;
 }
 
 .buttons > div {
@@ -223,8 +225,16 @@ label {
     height: 100px;
 } */
 
-.response {
+.replytext {
     font-size: 16px;
     margin:5px;
     color:white;
+}
+
+.response > p {
+    margin: top 10px;
+    height:215px;
+    width:500px;
+    
+    display:inline-block;
 }
