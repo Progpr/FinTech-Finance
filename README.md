@@ -1,14 +1,13 @@
 # FinTech-Finance - A Stock Investment Website
 
 ## Video Demo
-https://github.com/Progpr/Techfest-Website/assets/95381092/e96be11d-09ff-4801-ac57-d4dc2c1a75ab
-
-This is a front end only project which acts a medium for students or participants to register for their desired events in the techfest. With the theme of this year's techfest being OTT, I decided to give it a primary theme of Netflix. Here, I created a UI similar to Netflix with the navbar becoming opaque on scrolling plus the events being displayed as a carousel slider. Each event would then lead to a google form so for our participants to proceed to the registration. Next theme is Amazon Prime where I took the time to introduce our team members and some highlights from our last iteration of the techfest. Lastly to promote our sponsors, I created a Disney plus Hotstar like theme. The website was deployed and hosted on Microsoft Azure where I also utilized its private DNS service to set a custom domain. The address of the website (Now Disabled) is https://nm-ignite.co.in/. **My website aided in receiving 366 event registrations**
+https://github.com/Progpr/FinTech-Finance/assets/95381092/4809a394-d8e2-4e40-9cd9-73e6ceaa6248
+This is a
 
 + [TechStack](#TechStack)
 + [Features](#Features)
-+ [Files](#Files)
-+ [Run Locally](#RunLocally)
++ [Run Locally](#Run-Locally)
++ [Future Scope](#Scope)
 
 
 ## TechStack
@@ -44,13 +43,13 @@ Important Files of the directory
 Clone the project
 
 ```bash
-  git clone https://github.com/Progpr/ignite5
+  git clone https://github.com/Progpr/FinTech-Finance
 ```
 
 Go to the project directory
 
 ```bash
-  cd ignite5
+  cd FinTech-Finance
 ```
 
 Install dependencies
@@ -61,7 +60,14 @@ Install dependencies
 
 Start the server
 
+First Run the streamlit app in one terminal
 ```bash
-  flask run
+  streamlit run dashboard.py
 ```
+Then run the website in another terminal
+```bash
+  python -m flask run
+```
+
+##Scope
 
