@@ -329,9 +329,7 @@ def ask():
 def respose():
     # if request.method == ""
 
-
-
-    ##openAI logic  
+    ##Gemini API logic  
 
 
 

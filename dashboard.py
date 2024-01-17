@@ -6,17 +6,27 @@ from datetime import datetime
 import requests
 
 st.sidebar.title("Stock Dashboard")
+st.sidebar.write("Look for information about your desired company's stock. This is where you can do your research before investing. ")
 
 # User input for company name
 company_name = st.sidebar.text_input("Company Name", "")
 
 if company_name:
     # Request to the IEX Cloud search endpoint to find the stock symbol
-    search_url = f"https://api.iex.cloud/v1/search/{company_name}?token={config.IEX_P_KEY}"
-    search_response = requests.get(search_url)
-    search_results = search_response.json()
 
-    if search_results:
+    search_url = f"https://api.iex.cloud/v1/search/{company_name}?token={config.IEX_API_KEY}"
+
+    try:
+        search_response = requests.get(search_url)
+        search_response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
+        search_results = search_response.json()
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error making API request: {e}")
+        st.stop()  # Stop execution to prevent further errors
+
+    if not search_results or 'error' in search_results:
+        st.warning("No matching stock symbols found. Please refine your search.")
+    else:
         # Display the stock symbols found
         st.sidebar.write("Stock Symbols Found:")
         for result in search_results:
