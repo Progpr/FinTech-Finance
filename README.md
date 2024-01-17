@@ -1,7 +1,10 @@
 # FinTech-Finance - A Stock Investment Website
 
 ## Video Demo
-https://github.com/Progpr/FinTech-Finance/assets/95381092/4809a394-d8e2-4e40-9cd9-73e6ceaa6248
+https://github.com/Progpr/FinTech-Finance/assets/95381092/387af641-a587-4cf7-9c8a-bcfc3237c2e1
+
+
+
 This is a
 
 + [TechStack](#TechStack)
