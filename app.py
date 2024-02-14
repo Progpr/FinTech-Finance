@@ -6,7 +6,6 @@ from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
 from openai import OpenAI
-from datetime import datetime
 import requests
 from helpers import apology, login_required, lookup, usd
 
