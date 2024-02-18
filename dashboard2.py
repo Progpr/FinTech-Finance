@@ -28,6 +28,7 @@ else:
     #different tabs
     #overview, fundamentals and news
     overview_data, fund_data, news_data = st.tabs(["Overview", "Fundamentals", "News"])
+    info = yf.Ticker(ticker).info
 
     with overview_data:
         #contents here:
@@ -37,8 +38,6 @@ else:
         #country
         #ceo - name and title
         #company website
-
-        info = yf.Ticker(ticker).info
 
         st.subheader(info["longName"])
         
@@ -58,8 +57,71 @@ else:
         st.write(ceo["name"])
 
     with fund_data:
-        st.write("Fundamentals")
-        st.write(info)
+
+        col1,col2 = st.columns(2)
+        with col1:
+            st.subheader("Current Price")
+            st.write(info["currentPrice"])
+
+            st.subheader("Previous Close")
+            st.write(info["previousClose"])
+
+            st.subheader("Day Open")
+            st.write(info["open"])
+
+            st.subheader("Day High")
+            st.write(info["dayHigh"])
+
+            st.subheader("Day Low")
+            st.write(info["dayLow"])
+
+            st.subheader("Beta")
+            st.write(info["beta"])
+
+            st.subheader("Payout Ratio")
+            st.write(info["payoutRatio"])
+
+            st.subheader("Forward P/E")
+            st.write(info["forwardPE"])
+
+            st.subheader("Price to Sals Ratio (12 Months)")
+            st.write(info["priceToSalesTrailing12Months"])
+
+        
+        
+
+        with col2:
+            st.subheader("PEG Ratio")
+            st.write(info["pegRatio"])
+
+            st.subheader("Price to Book")
+            st.write(info["priceToBook"])
+
+            st.subheader("Revenue")
+            st.write(info["totalRevenue"])
+
+            st.subheader("Cash")
+            st.write(info["totalCash"])
+
+            st.subheader("Debt")
+            st.write(info["totalDebt"])
+        
+            st.subheader("50 Day Average")
+            st.write(info["fiftyDayAverage"])
+
+            st.subheader("200 Day Average")
+            st.write(info["twoHundredDayAverage"])
+
+            st.subheader("Dividend Rate")
+            st.write(info["dividendRate"])
+
+            st.subheader("Bid")
+            st.write(info["bid"])
+
+            st.subheader("Ask")
+            st.write(info["ask"])
+        
+    
 
     with news_data:
         news = yf.Ticker(ticker).news
