@@ -8,7 +8,11 @@ from datetime import datetime
 from openai import OpenAI
 import requests
 from helpers import apology, login_required, lookup, usd
-
+from dotenv import load_dotenv
+import streamlit as st
+import os 
+import google.generativeai as genai 
+import config
 # Configure application
 app = Flask(__name__)
 
@@ -19,6 +23,11 @@ app.jinja_env.filters["usd"] = usd
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
+
+#loading env variables
+load_dotenv()
+
+genai.congigure(api_key= config.GOOGLE_API_KEY)
 
 INCOME = [
     "Less than $10000",
@@ -325,7 +334,7 @@ def ask():
     return render_template("ask.html")
 
 @app.route("/response", methods=["GET","POST"])
-def respose():
+def response():
     # if request.method == ""
 
     ##Gemini API logic  
@@ -342,3 +351,9 @@ def bot():
 @app.route("/watchlist")
 def watchlist():
     return render_template("watchlist.html")
+
+@app.route("/dashboard")
+def streamlit1():
+    st.set_page_config(page_title="My Streamlit App")
+    st.write("Hello, world!")
+    

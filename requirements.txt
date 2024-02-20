@@ -4,3 +4,5 @@ Flask-Session
 requests
 streamlit
 yfinance
+google-generativeai
+python-dotenv
