@@ -5,9 +5,8 @@ from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from datetime import datetime
-from openai import OpenAI
 import requests
-from helpers import apology, login_required, lookup, usd
+from helpers import apology, login_required, lookup, usd, to_markdown
 from dotenv import load_dotenv
 import streamlit as st
 import os 
@@ -27,7 +26,7 @@ Session(app)
 #loading env variables
 load_dotenv()
 
-genai.congigure(api_key= config.GOOGLE_API_KEY)
+genai.configure(api_key= config.GOOGLE_API_KEY)
 
 INCOME = [
     "Less than $10000",
@@ -122,8 +121,10 @@ def buy():
 @login_required
 def history():
     """show history of transactions"""
-    purchases_buy = db.execute("select * from purchases where type='B'")
-    purchases_sell = db.execute("select * from purchases where type='S'")
+    userid = session["user_id"]
+    username = db.execute("select username from users where id=?",userid)[0]["username"]
+    purchases_buy = db.execute("select * from purchases where username= ? AND type='B'",username)
+    purchases_sell = db.execute("select * from purchases where username=? AND type='S'",username)
     return render_template("history.html", purchases_buy=purchases_buy, purchases_sell=purchases_sell)
 
 
@@ -354,6 +355,6 @@ def watchlist():
 
 @app.route("/dashboard")
 def streamlit1():
-    st.set_page_config(page_title="My Streamlit App")
+    st.set_page_config(page_title="My Streamlit App") 
     st.write("Hello, world!")
-    
+    return streamlit1()

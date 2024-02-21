@@ -85,3 +85,8 @@ def fundamentals(symbol):
 
 def format_number(number):
     return f"{number:,}"
+
+
+def to_markdown(text):
+  text = text.replace('•', '  *')
+  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
