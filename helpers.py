@@ -6,10 +6,12 @@ import subprocess
 import urllib
 import uuid
 from openai import OpenAI
-
+from IPython.display import display
+from IPython.display import Markdown
 from flask import redirect, render_template, session
 from functools import wraps
-
+import pathlib
+import textwrap
 
 def apology(message, code=400):
     """Render message as an apology to user."""
@@ -89,4 +91,4 @@ def format_number(number):
 
 def to_markdown(text):
   text = text.replace('•', '  *')
-  return Markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
+  return textwrap.indent(text, '> ', predicate=lambda _: True)

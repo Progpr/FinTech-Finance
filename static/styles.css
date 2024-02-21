@@ -231,10 +231,14 @@ label {
     color:white;
 }
 
-.response > p {
+.response {
     margin: top 10px;
     height:215px;
-    width:500px;
+    width:565px;
     
     display:inline-block;
 }
+.responsebuttons > .response {
+    margin: top 10px;
+}
+

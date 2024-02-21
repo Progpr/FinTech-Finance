@@ -12,6 +12,7 @@ import streamlit as st
 import os 
 import google.generativeai as genai 
 import config
+import mistune
 # Configure application
 app = Flask(__name__)
 
@@ -23,9 +24,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
-#loading env variables
-load_dotenv()
-
+# set gemini pro api key
 genai.configure(api_key= config.GOOGLE_API_KEY)
 
 INCOME = [
@@ -123,6 +122,8 @@ def history():
     """show history of transactions"""
     userid = session["user_id"]
     username = db.execute("select username from users where id=?",userid)[0]["username"]
+
+    # display buy and share purchases
     purchases_buy = db.execute("select * from purchases where username= ? AND type='B'",username)
     purchases_sell = db.execute("select * from purchases where username=? AND type='S'",username)
     return render_template("history.html", purchases_buy=purchases_buy, purchases_sell=purchases_sell)
@@ -336,25 +337,27 @@ def ask():
 
 @app.route("/response", methods=["GET","POST"])
 def response():
-    # if request.method == ""
+    message = request.form.get("input")
 
-    ##Gemini API logic  
+    if request.method == "GET":
+        return render_template("bot.html")
+    
+    else:
+        ## Gemini Pro
+        # model = genai.GenerativeModel('gemini-pro')
 
+        # reply = model.generate_content(message)
 
+        # mark_response = to_markdown(reply.text)
+        # text_response = mistune.markdown(mark_response)
 
-    return render_template("response.html")
+        return render_template("response.html", reply=message)
 
 @app.route("/bot")
 def bot():
     return render_template("bot.html")
 
-
 @app.route("/watchlist")
 def watchlist():
     return render_template("watchlist.html")
 
-@app.route("/dashboard")
-def streamlit1():
-    st.set_page_config(page_title="My Streamlit App") 
-    st.write("Hello, world!")
-    return streamlit1()
