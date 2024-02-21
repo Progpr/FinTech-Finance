@@ -184,6 +184,16 @@ label {
     border-radius:6%;
 }
 
+.container2 {
+    width:600px;
+    height:400px;
+    background-color:white;
+    display:grid;
+    align-items: center;
+    border: solid black 5px;
+    border-radius:6%;
+}
+
 .welcome > div {
     place-content: center;
 }
@@ -205,7 +215,7 @@ label {
 }
 
 .input-window {
-    margin-top: 0%;
+    margin-top: 0px;
 }
 
 .title {
@@ -225,16 +235,14 @@ label {
     height: 100px;
 } */
 
-.replytext {
-    font-size: 16px;
-    margin:5px;
-    color:white;
-}
 
 .response {
-    margin: top 10px;
+    margin: 5px;
     height:215px;
     width:565px;
+    color:white;
+    font-size: 16px;
+
     
     display:inline-block;
 }
@@ -242,3 +250,9 @@ label {
     margin: top 10px;
 }
 
+ol {
+    list-style: none;
+}
+ul {
+    list-style:none;
+}

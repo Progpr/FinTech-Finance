@@ -343,15 +343,18 @@ def response():
         return render_template("bot.html")
     
     else:
+
+        if not message:
+            return apology("Cannot send a blank message")
         ## Gemini Pro
-        # model = genai.GenerativeModel('gemini-pro')
+        model = genai.GenerativeModel('gemini-pro')
 
-        # reply = model.generate_content(message)
+        reply = model.generate_content(message)
 
-        # mark_response = to_markdown(reply.text)
-        # text_response = mistune.markdown(mark_response)
+        mark_response = to_markdown(reply.text)
+        text_response = mistune.markdown(reply.text)
 
-        return render_template("response.html", reply=message)
+        return render_template("response.html", reply=text_response)
 
 @app.route("/bot")
 def bot():

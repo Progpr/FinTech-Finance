@@ -91,4 +91,4 @@ def format_number(number):
 
 def to_markdown(text):
   text = text.replace('•', '  *')
-  return textwrap.indent(text, '> ', predicate=lambda _: True)
+  return textwrap.indent(text, '>> ', predicate=lambda _: True)
