@@ -31,7 +31,7 @@ First Run the streamlit app in one terminal
 ```bash
   streamlit run dashboard2.py
 ```
-Then run the website in another terminal
+Then run the flask server in another terminal
 ```bash
   python -m flask run
 ```
