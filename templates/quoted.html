@@ -1,22 +1,21 @@
 {% extends "layout.html" %}
 
 {% block main %}
-<table class="table">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">Symbol</th>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>{{symbol}}</td>
-            <td>{{name}}</td>
-            <td>{{price | usd}}</td>
-        </tr>
-        <tr><button>Add to watchlist</button></tr>
-    </tbody>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Symbol</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{symbol}}</td>
+                <td>{{price | usd}}</td>
+            </tr>
+        </tbody>
     </table>
-    <table>
+    <form action="" method="post">
+        <input class="btn btn-primary" type="submit" value="Add to watchlist">
+    </form>
 {% endblock %}

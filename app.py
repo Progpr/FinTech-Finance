@@ -41,6 +41,8 @@ INCOME = [
     "More than $100,000",
 ]
 
+holding = {}
+
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
@@ -215,6 +217,9 @@ def quote():
     stock = request.form.get("symbol")
     quote = lookup(str(stock).upper())
 
+    holding["stock"] = quote["name"]
+    holding["price"] = quote["price"]
+
     if request.method =="GET":
         return render_template("quote.html")
 
@@ -231,6 +236,21 @@ def quote():
         # displaying the results
         return render_template("quoted.html", symbol=stock,name=quote["name"],price=quote["price"])
 
+
+@app.route("/quoted", methods=["GET","POST"])
+@login_required
+def add():
+
+    symbol = holding["stock"]
+    price = holding["price"]
+
+    if request.method =="GET":
+        return redirect("/quote")
+
+    else:
+        return render_template("watchlist.html", symbol="symbol", price="price")
+        holding["stock"] = ""
+        holding["price"] = ""
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -331,10 +351,6 @@ def fundamentals():
     return render_template("fundamentals.html")
 
 
-@app.route("/ask")
-def ask():
-    return render_template("ask.html")
-
 @app.route("/response", methods=["GET","POST"])
 def response():
     message = request.form.get("input")
@@ -361,6 +377,8 @@ def bot():
     return render_template("bot.html")
 
 @app.route("/watchlist")
+@login_required
 def watchlist():
+
     return render_template("watchlist.html")
 

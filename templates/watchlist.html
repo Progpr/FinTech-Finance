@@ -18,20 +18,22 @@
                     </form>
                 </div>
                 <div class="heading">
-                    <div class="stock"><h4>Stocks</h4>
-                        <div class="watching">
-                            <ul>
-                                <li>Stock 1</li>
-                                <li>Stock 2</li>
-                                <li>Stock 3</li>
-                                <li>Stock 4</li>
-                                <li>Stock 5</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="last"><h4>Last</h4></div>
-                    <div class="change"><h4>Change</h4></div>
-                    <div class="perchange"><h4>%Change</h4></div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{symbol}}</td>
+                                <td>{{name}}</td>
+                                <td>{{price | usd}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
