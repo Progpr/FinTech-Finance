@@ -41,7 +41,6 @@ INCOME = [
     "More than $100,000",
 ]
 
-holding = {}
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
@@ -214,11 +213,10 @@ def logout():
 @app.route("/quote", methods=["GET", "POST"])
 @login_required
 def quote():
+    userid = session["user_id"]
+    username = db.execute("select username from users where id=?",userid)[0]["username"]
     stock = request.form.get("symbol")
     quote = lookup(str(stock).upper())
-
-    holding["stock"] = quote["name"]
-    holding["price"] = quote["price"]
 
     if request.method =="GET":
         return render_template("quote.html")
@@ -232,7 +230,12 @@ def quote():
         # to check if stock symbol is valid
         if quote == None:
             return apology("Invalid Stock Symbol",400)
+        
 
+        #adding to watchlist
+        if quote["name"] not in db.execute("select * from watchlist where username = ?", username)[0]["stock"]:
+             db.execute("Insert into watchlist(username, stock, price) values(?, ?, ?)",username, quote["name"],quote["price"])
+        
         # displaying the results
         return render_template("quoted.html", symbol=stock,name=quote["name"],price=quote["price"])
 
@@ -240,17 +243,15 @@ def quote():
 @app.route("/quoted", methods=["GET","POST"])
 @login_required
 def add():
+        userid = session["user_id"]
+        username = db.execute("select username from users where id=?",userid)[0]["username"]
+        watchlist_query = db.execute("select * from watchlist where username = ?", username)
 
-    symbol = holding["stock"]
-    price = holding["price"]
-
-    if request.method =="GET":
-        return redirect("/quote")
-
-    else:
-        return render_template("watchlist.html", symbol="symbol", price="price")
-        holding["stock"] = ""
-        holding["price"] = ""
+        if request.method == "GET":
+            return render_template("watchlist.html", watchlist = watchlist_query)
+        else:
+            flash("Added to watchlist!")
+            return redirect("/quote")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -376,9 +377,7 @@ def response():
 def bot():
     return render_template("bot.html")
 
+
 @app.route("/watchlist")
-@login_required
-def watchlist():
-
+def watch():
     return render_template("watchlist.html")
-
