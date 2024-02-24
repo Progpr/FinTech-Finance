@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+    <div style="text-align: center;">
+        <h1 class="pageheader">Run a simulation of the top stocks</h1>
+        <p style="color:rgb(255, 255, 255); font-weight: 600; margin-left:  100px; margin-right: 100px; margin-top: 50px; font-size: 20px;">Explore stock investment without the risk using our Simulation Feature. With realistic market conditions, you can run a simulation on anyone of the top 4 stocks with customized timeframes (5 years and 10 years), and refine your strategies—all with simulated money.</p>
+
+        <form name="simform" style="margin-top: 50px;">
+            <label for="stocks" class="labels">Select the stock</label>
+            <div class="form-group">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="stocks" id="stock1" value="option1" checked>
+                    <label class="form-check-label" for="stock1">
+                    Stock 1
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="stocks" id="stock2" value="option2">
+                    <label class="form-check-label" for="stock2">
+                    Stock 2
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="stocks" id="stock3" value="option3">
+                    <label class="form-check-label" for="stock3">
+                    Stock 3
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="stocks" id="stock4" value="option4">
+                    <label class="form-check-label" for="stock4">
+                    Stock 4
+                    </label>
+                </div><br><br>
+            </div>
+            <!-- <div class="btn-group-horizontal" role="group" aria-label="Horizontal radio toggle button group">
+                <label for="stocks">Select the Stock</label>
+                <input type="radio" class="btn-check" name="stocks" id="stock1" value="stock1">
+                <label class="btn btn-outline-dark" for="stock1">Stock1</label>
+                <input type="radio" class="btn-check" name="stocks" id="stock2" value="stock2">
+                <label class="btn btn-outline-dark" for="stock2">Stock2</label>
+                <input type="radio" class="btn-check" name="stocks" id="stock3"  value="stock3">
+                <label class="btn btn-outline-dark" for="stock3">Stock3</label>
+                <input type="radio" class="btn-check" name="stocks" id="stock4"  value="stock4">
+                <label class="btn btn-outline-dark" for="stock4">Stock4</label>
+            </div><br><br> -->
+            
+            <label for="initial" class="labels">Enter the initial amount of investment in $</label>
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="initial" name="initial" type="number" required>
+            </div><br><br>
+            <label for="years" class="labels">Select the Timeframe</label>
+            <div class="form-group">
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="years" id="five" value="5" checked>
+                    <label class="form-check-label" for="five">
+                        5 years
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="years" id="ten" value="10">
+                    <label class="form-check-label" for="ten">
+                        10 years
+                    </label>
+                </div>
+            </div><br>
+
+            <input class="btn btn-primary" type="submit" value="Simulate">
+            <br>
+        </form>
+    </div>
+{% endblock %}

@@ -368,9 +368,11 @@ def response():
 
         reply = model.generate_content(message)
 
+        if not reply:
+            return apology("Failed to load response", 126)
+
         mark_response = to_markdown(reply.text)
         text_response = mistune.markdown(reply.text)
-
         return render_template("response.html", reply=text_response)
 
 @app.route("/bot")
@@ -381,3 +383,12 @@ def bot():
 @app.route("/watchlist")
 def watch():
     return render_template("watchlist.html")
+
+@app.route("/tutorial")
+def tut():
+    return render_template("tutorial.html")
+
+
+@app.route("/simulate")
+def sim():
+    return render_template("smiluate.html")

@@ -25,13 +25,13 @@
             <div class="mb-3">
                 <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Re-type Password" type="password" ng-model="user.confirmation" required ng-pattern="user.password">
                 <span class="error" ng-show="myForm.confirmation.$dirty && myForm.confirmation.$error.required">Confirmation is required.</span>
-            </div>
-            <div class="btn-group-horizontal" role="group" aria-label="Horizontal radio toggle button group">
+            </div><br>
+            <!-- <div class="btn-group-horizontal" role="group" aria-label="Horizontal radio toggle button group">
                 <input type="radio" class="btn-check" name="gender" id="male" ng-model="user.gender" value="Male">
                 <label class="btn btn-outline-dark" for="male">Male</label>
                 <input type="radio" class="btn-check" name="gender" id="female" ng-model="user.gender" value="Female">
                 <label class="btn btn-outline-dark" for="female">Female</label>
-            </div><br>
+            </div><br> -->
             <div class="mb-3">
                 <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="pan" name="pan" placeholder="Pan Number" type="text" ng-model="user.pan" required>
                 <span class="error" ng-show="myForm.pan.$dirty && myForm.pan.$error.required">Pan Number is required.</span>
