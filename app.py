@@ -27,6 +27,7 @@ Session(app)
 # set gemini pro api key
 genai.configure(api_key= config.GOOGLE_API_KEY)
 
+
 INCOME = [
     "Less than $10000",
     "$10000-$20000",
@@ -231,14 +232,15 @@ def quote():
         if quote == None:
             return apology("Invalid Stock Symbol",400)
         
+        session["symbol"] = quote["name"]
+        session["price"] = quote["price"]
 
         #adding to watchlist
-        if quote["name"] not in db.execute("select * from watchlist where username = ?", username)[0]["stock"]:
-             db.execute("Insert into watchlist(username, stock, price) values(?, ?, ?)",username, quote["name"],quote["price"])
+        # date = datetime.now() 
+        # db.execute("Insert into watchlist(username, stock, price, since) values(?, ?, ?, ?)",username, quote["name"],quote["price"], date)
         
         # displaying the results
         return render_template("quoted.html", symbol=stock,name=quote["name"],price=quote["price"])
-
 
 @app.route("/quoted", methods=["GET","POST"])
 @login_required
@@ -250,9 +252,20 @@ def add():
         if request.method == "GET":
             return render_template("watchlist.html", watchlist = watchlist_query)
         else:
+            # Add to watchlist
+            date = datetime.now()
+
+            watchlist_query2 =  db.execute("select * from watchlist where stock = ?", session["symbol"])
+
+            if len(watchlist_query2)>0 and session["symbol"] in watchlist_query2[0]["stock"]:
+                return apology("Already added to watchlist")
+
+            db.execute("Insert into watchlist(username, stock, price, since) values(?, ?, ?, ?)",username, session["symbol"], session["price"], date)
+
             flash("Added to watchlist!")
             return redirect("/quote")
-
+            session["symbol"] = ""
+            session["price"] = ""
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

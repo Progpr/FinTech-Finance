@@ -188,13 +188,15 @@ input:not(:placeholder-shown) {
 }
 
 .container2 {
-    width:600px;
-    height:400px;
-    background-color:white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color:#141414;
     display:grid;
-    align-items: center;
-    border: solid black 5px;
-    border-radius:6%;
+    align-items:center;
+    border: solid white 10px;
+    border-radius:50%;
 }
 
 .welcome > div {
