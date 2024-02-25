@@ -13,6 +13,7 @@ import os
 import google.generativeai as genai 
 import config
 import mistune
+import backtest
 # Configure application
 app = Flask(__name__)
 
@@ -402,6 +403,16 @@ def tut():
     return render_template("tutorial.html")
 
 
-@app.route("/simulate")
+@app.route("/simulate", methods=["GET","POST"])
 def sim():
-    return render_template("smiluate.html")
+
+    ticker = request.form.get("stocks")
+    time = request.form.get("years")
+    quantity = request.form.get("initial")
+
+
+
+
+
+    if request.method=="GET":
+        return render_template("smiluate.html")

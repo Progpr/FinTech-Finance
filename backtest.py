@@ -61,6 +61,7 @@ def run_backtest(ticker, time, quantity):
     strategy_instance = cerebro.run()[0]
 
     return strategy_instance.stop()
+    
 def generate_backtest_plot(ticker, time, quantity):
     # Extract hourly data from Yahoo Finance for the specified time period
     if time == 10:
