@@ -1,5 +1,5 @@
 import os
-
+import base64
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
@@ -405,14 +405,20 @@ def tut():
 
 @app.route("/simulate", methods=["GET","POST"])
 def sim():
-
-    ticker = request.form.get("stocks")
-    time = request.form.get("years")
-    quantity = request.form.get("initial")
-
-
-
-
-
+    Apple = lookup("AAPL")
+    Microsoft = lookup("MSFT")
+    Google = lookup("GOOG")
+    Tesla = lookup("TSLA")
     if request.method=="GET":
-        return render_template("smiluate.html")
+        return render_template("smiluate.html", price1=Apple["price"], price2=Microsoft["price"], price3=Google["price"], price4=Tesla["price"])
+    else:
+        ticker = request.form.get("stocks")
+        time = int(request.form.get("year"))
+        quantity = int(request.form.get("initial"))
+
+        results = backtest.run_backtest(ticker, time, quantity)
+
+        # img = backtest.generate_backtest_plot(ticker, time, quantity)
+        # img.seek(0)
+        # plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+        return render_template("simulated.html", initial_amount=results["Original Amount Invested"], final_amount=results["Final Value"], years=time, ticker=ticker)

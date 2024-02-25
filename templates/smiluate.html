@@ -8,31 +8,31 @@
             <p style="color:rgb(255, 255, 255); font-weight: 600; margin-left:  100px; margin-right: 100px; margin-top: 50px; font-size: 20px;">
                 Our automated trading algorithms enable you to conduct a time simulation for any of the top 4 stocks. Simply input the number of stocks you intend to invest in and the duration for which you plan to hold your position, and you're all set!</p>
         </div>
-        <form name="simform" style="margin-top: 50px;">
+        <form name="simform" action="/simulate" method="post" style="margin-top: 50px;">
             <label for="stocks" class="labels">Select the stock</label>
             <div class="form-group">
                 <div class=" form check form-check-inline">
-                    <input class="form-check-input" type="radio" name="stocks" id="stock1" value="option1" checked>
+                    <input class="form-check-input" type="radio" name="stocks" id="AAPL" value="AAPL" checked>
                     <label class="form-check-label" for="stock1">
-                    Stock 1 <p>price1</p>
+                    Apple <p>{{price1 | usd}}</p>
                     </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="stocks" id="stock2" value="option2">
+                    <input class="form-check-input" type="radio" name="stocks" id="MSFT" value="MSFT">
                     <label class="form-check-label" for="stock2">
-                    Stock 2 <p>price2</p>
+                    Microsoft <p>{{price2 | usd}}</p>
                     </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="stocks" id="stock3" value="option3">
+                    <input class="form-check-input" type="radio" name="stocks" id="GOOG" value="GOOG">
                     <label class="form-check-label" for="stock3">
-                    Stock 3 <p>price3</p>
+                    Google <p>{{price3 | usd}}</p>
                     </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="stocks" id="stock4" value="option4">
+                    <input class="form-check-input" type="radio" name="stocks" id="TSLA" value="TSLA">
                     <label class="form-check-label" for="stock4">
-                    Stock 4 <p>price4</p>
+                    Tesla <p>{{price4 | usd}}</p>
                     </label>
                 </div><br><br>
             </div>
@@ -52,21 +52,28 @@
             <div class="mb-3">
                 <input autocomplete="off" class="form-control mx-auto w-auto" id="initial" name="initial" type="number" required>
             </div><br><br>
-            <label for="years" class="labels">Select the Timeframe</label>
+
+            <label for="initial" class="labels">Choose from either a 10 year or 5 year simulation (Enter 5 or 10)</label>
+            <div class="mb-3">
+                <input autocomplete="off" class="form-control mx-auto w-auto" id="year" name="year" type="number" required>
+            </div>
+
+
+            <!-- <label for="years" class="labels">Select the Timeframe</label>
             <div class="form-group">
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="years" id="five" value="5" checked>
+                    <input class="form-check-input" type="radio" name="years" id="five" value=5 checked>
                     <label class="form-check-label" for="five">
                         5 years
                     </label>
                 </div>
                 <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="years" id="ten" value="10">
+                    <input class="form-check-input" type="radio" name="years" id="ten" value=10>
                     <label class="form-check-label" for="ten">
                         10 years
                     </label>
                 </div>
-            </div>
+            </div> -->
             <img src="/static/growth2.webp" alt="Buy Pic" height="150" width="150">
             <input class="btn btn-primary" type="submit" value="Simulate">
             <br>

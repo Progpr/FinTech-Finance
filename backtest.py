@@ -2,6 +2,12 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 import backtrader as bt
+import matplotlib
+matplotlib.use('Agg')
+import base64
+import io
+from io import BytesIO
+
 
 def run_backtest(ticker, time, quantity):
     # Define the backtesting strategy parameters
@@ -110,10 +116,13 @@ def generate_backtest_plot(ticker, time, quantity):
     cerebro.addstrategy(Strategy)
     cerebro.addanalyzer(bt.analyzers.TradeAnalyzer, _name='trade_analyzer')
     cerebro.run()
-    cerebro.plot(style='candlestick', volume=True)
-    plt.savefig('backtest_plot.png')
-    plt.close()
-    return 'backtest_plot.png'
+
+    img = io.BytesIO()
+    cerebro.plot(style='candlestick', volume=True, iplot=False, volumeup='green', volumedown='red', width=200, height=200, tight=True, savefig=img, fmt='png')
+    
+    # cerebro.plot(style='candlestick', volume=True, iplot=False, volumeup='green', volumedown='red', width=12, height=6, tight=True)
+    # img = plt.savefig('backtest_plot.png')
+    return img
 
 # Example usage:
 ticker = "AAPL"

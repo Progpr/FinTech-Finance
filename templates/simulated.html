@@ -1,6 +1,19 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    
+    <h1 class="pageheader">Simulation Results</h1>
+    <h3 style="font-weight: 700;">{{ticker}}</h3>
+    <br><br>
+
+    <h2 style="font-weight: 700;">Initial Amount Invested</h2>
+    <h2 style="font-weight: 700; color:white;">{{initial_amount | usd}}</h2>
+    <br><br>
+
+    <h2 style="font-weight: 700;">Value of Investment after {{years}} years</h2>
+    <h2 style="font-weight: 700; color:white;">{{final_amount | usd}}</h2>
+     
+    <!-- <br><br>
+    <h2 style="font-weight: 700;">Simulation Graph</h2>
+    <img src="data:image/png;base64, {{ plot_url }}" height="400" width="600" alt="Backtest Plot"> -->
 
 {% endblock %}
