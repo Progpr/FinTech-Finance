@@ -79,8 +79,10 @@ else:
             st.subheader("Beta")
             st.write(info["beta"])
 
-            st.subheader("Payout Ratio")
-            st.write(info["payoutRatio"])
+            if "payoutRatio" in info:
+
+                st.subheader("Payout Ratio")
+                st.write(info["payoutRatio"])
 
             st.subheader("Forward P/E")
             st.write(info["forwardPE"])
@@ -113,8 +115,8 @@ else:
             st.subheader("200 Day Average")
             st.write(info["twoHundredDayAverage"])
 
-            st.subheader("Dividend Rate")
-            st.write(info["dividendRate"])
+            # st.subheader("Dividend Rate")
+            # st.write(info["dividendRate"])
 
             st.subheader("Bid")
             st.write(info["bid"])
